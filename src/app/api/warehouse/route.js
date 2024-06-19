@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
+import db from "@/lib/db"
 
 export async function POST(request) {
   try {
     const { title, location, description, type } = await request.json();
-    const warehouse = { title, location, description, type };
+    const warehouse = await db.warehouse.create({
+      data:{ title, location, description, type }
+    });
+
     console.log(warehouse)
     return NextResponse.json(warehouse);
   } catch (error) {

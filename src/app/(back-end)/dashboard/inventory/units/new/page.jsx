@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import TextInput from "@/components/FormInputs/TextInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextAreaInput from "@/components/FormInputs/TextAreaInput";
+import toast from "react-hot-toast";
 
 export default function NewUnit() {
   const {
@@ -30,8 +31,9 @@ export default function NewUnit() {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        console.log(response);
+        //console.log(response);
         setLoading(false);
+        toast.success("New Unit Created Successfully.")
         reset();
       }
     } catch (error) {

@@ -7,6 +7,7 @@ import TextInput from "@/components/FormInputs/TextInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextAreaInput from "@/components/FormInputs/TextAreaInput";
 import SelectInput from "@/components/FormInputs/SelectInput";
+import toast from "react-hot-toast";
 
 export default function NewWarehouse() {
   const selectOptions = [
@@ -43,6 +44,7 @@ export default function NewWarehouse() {
       if (response.ok) {
         console.log(response);
         setLoading(false);
+        toast.success("New Warehouse Created Successfully.");
         reset();
       }
     } catch (error) {
