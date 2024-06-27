@@ -3,7 +3,7 @@
 import React from "react";
 import FixedHeader from "@/components/dashboard/FixedHeader";
 import OptionCards from "../../../../components/dashboard/OptionCards";
-import { Boxes, Combine, Component, Hexagon, Rotate3D, ScrollText, Shirt, Warehouse } from "lucide-react";
+import { Boxes, Combine, Component, Factory, Hexagon, Rotate3D, ScrollText, Shirt, Warehouse } from "lucide-react";
 
 export default function Inventory() {
   const optionCards = [
@@ -69,6 +69,15 @@ export default function Inventory() {
       linkTitle: "New Adjustment",
       enabled: true,
       icon: Rotate3D,
+    },
+    {
+      title: "Supplier",
+      description:
+        "Create standalone items and services that you buy and sell.",
+      link: "/dashboard/inventory/supplier/new",
+      linkTitle: "New Supplier",
+      enabled: true,
+      icon: Factory,
     }
   ];
   return (

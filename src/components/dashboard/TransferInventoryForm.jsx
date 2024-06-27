@@ -58,25 +58,35 @@ export default function TransferInventory() {
     >
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <SelectInput
-          name="givingWarehouseId"
+          name="warehouseId"
           label="Select the Warehouse giving the stock"
           register={register}
           options={branches}
           className="w-full"
         />
         <SelectInput
-          name="receivingWarehouseId"
+          name="warehouseId"
           label="Select the Warehouse to receive stock"
           register={register}
           options={branches}
           className="w-full"
         />
+
+<TextInput
+          label="Reference Number"
+          name="referenceNumber"
+          register={register}
+          errors={errors}
+          className="w-full"
+        />
+
         <TextInput
           label="Enter Quantity of Stock to Transfer"
           type="number"
           name="transferStockQty"
           register={register}
           errors={errors}
+          className="w-full"
         />
 
         <TextAreaInput

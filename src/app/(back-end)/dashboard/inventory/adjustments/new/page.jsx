@@ -47,7 +47,7 @@ export default function NewAdjustments() {
             );
           })}
         </ul>
-        {activeForm === "add" ? <TransferInventory /> : <AddInventoryForm />}
+        {activeForm === "add" ? <AddInventoryForm /> : <TransferInventory />}
       </div>
     </div>
   );
