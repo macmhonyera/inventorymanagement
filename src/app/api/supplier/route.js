@@ -3,9 +3,9 @@ import db from "@/lib/db"
 
 export async function POST(request) {
   try {
-    const { name,phone,email,address,contactPerson,supplierCode,paymentsTerms, taxID,notes } = await request.json();
+    const { title,phone,email,address,contactPerson,supplierCode,paymentsTerms, taxID,notes } = await request.json();
     const supplier = await db.supplier.create({
-      data: { name,phone,email,address,contactPerson,supplierCode,paymentsTerms, taxID,notes }
+      data: { title,phone,email,address,contactPerson,supplierCode,paymentsTerms, taxID,notes }
     });
     //console.log(supplier)
     return NextResponse.json(supplier);
@@ -13,6 +13,23 @@ export async function POST(request) {
     console.log(error);
     return NextResponse.json(
       { error, message: "Failed to create supplier" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET(request) {
+  try {
+    const supplier=await db.supplier.findMany({
+      orderBy:{
+        createdAt:'desc'
+      }
+    });
+    return NextResponse.json(supplier);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error, message: "Failed to fetch categories" },
       { status: 500 }
     );
   }
