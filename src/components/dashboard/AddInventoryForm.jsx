@@ -6,6 +6,7 @@ import TextInput from "@/components/FormInputs/TextInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextAreaInput from "@/components/FormInputs/TextAreaInput";
 import SelectInput from "@/components/FormInputs/SelectInput";
+import toast from "react-hot-toast";
 
 export default function AddInventoryForm() {
   const branches = [
@@ -26,6 +27,16 @@ export default function AddInventoryForm() {
       value: "5678cghjbknluhjh",
     },
   ];
+  const items = [
+    {
+      label: "Item A",
+      value: "23456fuiopghjk",
+    },
+    {
+      label: "Item B",
+      value: "5678cghjbknluhjh",
+    },
+  ];
 
   const {
     register,
@@ -37,7 +48,7 @@ export default function AddInventoryForm() {
   const [loading, setLoading] = React.useState(false);
 
   async function onSubmit(data) {
-    console.log(data);
+    //console.log(data);
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     try {
@@ -49,8 +60,9 @@ export default function AddInventoryForm() {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        console.log(response);
+        //console.log(response);
         setLoading(false);
+        toast.success("Stock added successfully")
         reset();
       }
     } catch (error) {
@@ -72,6 +84,13 @@ export default function AddInventoryForm() {
           errors={errors}
           className="w-full"
         />
+        <SelectInput
+          name="itemId"
+          label="Select the item"
+          register={register}
+          options={items}
+          className="w-full"
+        />
 
         <TextInput
           label="Enter Quantity of Stock to Add"
@@ -82,17 +101,8 @@ export default function AddInventoryForm() {
           className="w-full"
         />
 
-        {/* <TextInput
-          type="date"
-          label="Date"
-          name="date"
-          register={register}
-          errors={errors}
-          className="w-full"
-        /> */}
-
         <SelectInput
-          name="warehouseId"
+          name="receivingWarehouseId"
           label="Select the Warehouse to receive stock"
           register={register}
           options={branches}

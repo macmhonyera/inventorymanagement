@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import db from "@/lib/db";
 
 export async function POST(request) {
   // title,
@@ -20,9 +21,48 @@ export async function POST(request) {
   // notes,
   // description,
   try {
-    const data = await request.json();
+    const {
+      name,
+      description,
+      categoryId,
+      sku,
+      barcode,
+      unitId,
+      brandId,
+      supplierId,
+      unitPrice,
+      costPrice,
+      reOrderPoint,
+      location,
+      imageUrl,
+      weight,
+      dimentions,
+      taxRate,
+      notes,
+    } = await request.json();
+    const item = await db.item.create({
+      data: {
+        name,
+        description,
+        categoryId,
+        sku,
+        barcode,
+        unitId,
+        brandId,
+        supplierId,
+        unitPrice,
+        costPrice,
+        reOrderPoint,
+        location,
+        imageUrl,
+        weight,
+        dimentions,
+        taxRate,
+        notes,
+      },
+    });
 
-    console.log(data);
+   // console.log(item);
     return NextResponse.json(data);
   } catch (error) {
     console.log(error);

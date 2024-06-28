@@ -10,6 +10,7 @@ import SelectInput from "@/components/FormInputs/SelectInput";
 import { UploadDropzone } from "@uploadthing/react";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function NewItem() {
   const [imageUrl, setImageUrl] = useState("");
@@ -95,8 +96,9 @@ export default function NewItem() {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        console.log(response);
+        //console.log(response);
         setLoading(false);
+        toast.success("Item saved successfully")
         reset();
       }
     } catch (error) {

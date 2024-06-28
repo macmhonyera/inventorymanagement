@@ -6,6 +6,7 @@ import TextInput from "@/components/FormInputs/TextInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextAreaInput from "@/components/FormInputs/TextAreaInput";
 import SelectInput from "@/components/FormInputs/SelectInput";
+import toast from "react-hot-toast";
 
 export default function TransferInventory() {
   const branches = [
@@ -15,6 +16,16 @@ export default function TransferInventory() {
     },
     {
       label: "Branch B",
+      value: "5678cghjbknluhjh",
+    },
+  ];
+  const items = [
+    {
+      label: "Item A",
+      value: "23456fuiopghjk",
+    },
+    {
+      label: "Item B",
       value: "5678cghjbknluhjh",
     },
   ];
@@ -29,7 +40,7 @@ export default function TransferInventory() {
   const [loading, setLoading] = React.useState(false);
 
   async function onSubmit(data) {
-    console.log(data);
+    //console.log(data);
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     try {
@@ -41,8 +52,9 @@ export default function TransferInventory() {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        console.log(response);
+        //console.log(response);
         setLoading(false);
+        toast.success("Stock transfer was successful.")
         reset();
       }
     } catch (error) {
@@ -72,11 +84,18 @@ export default function TransferInventory() {
           className="w-full"
         />
 
-<TextInput
+        <TextInput
           label="Reference Number"
           name="referenceNumber"
           register={register}
           errors={errors}
+          className="w-full"
+        />
+        <SelectInput
+          name="itemId"
+          label="Select the item"
+          register={register}
+          options={items}
           className="w-full"
         />
 

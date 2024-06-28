@@ -7,7 +7,7 @@ export async function POST(request) {
     const supplier = await db.supplier.create({
       data: { name,phone,email,address,contactPerson,supplierCode,paymentsTerms, taxID,notes }
     });
-    console.log(supplier)
+    //console.log(supplier)
     return NextResponse.json(supplier);
   } catch (error) {
     console.log(error);
